@@ -18,7 +18,11 @@ function useIsMobile() {
     const check = () => setM(window.innerWidth < 640);
     check();
     window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
+    window.addEventListener('pageshow', check); // bfcache restore on Safari
+    return () => {
+      window.removeEventListener('resize', check);
+      window.removeEventListener('pageshow', check);
+    };
   }, []);
   return m;
 }
