@@ -13,12 +13,13 @@ const SANS = "'Inter', system-ui, sans-serif";
 const DEADLINE = new Date('2026-05-30T23:59:59');
 
 function useIsMobile() {
-  const [m, setM] = useState(false);
+  const [m, setM] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 640 : false
+  );
   useEffect(() => {
     const check = () => setM(window.innerWidth < 640);
-    check();
     window.addEventListener('resize', check);
-    window.addEventListener('pageshow', check); // bfcache restore on Safari
+    window.addEventListener('pageshow', check);
     return () => {
       window.removeEventListener('resize', check);
       window.removeEventListener('pageshow', check);
@@ -665,8 +666,9 @@ function PackageCard({
       )}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
         <div>
-          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color, marginBottom: 6 }}>{title}</div>
-          <div style={{ fontFamily: SERIF, fontSize: 38, fontWeight: 400 }}>${fmt(price)}</div>
+          <div style={{ fontFamily: SERIF, fontSize: 22, fontWeight: 500, color: '#e8e8f0', marginBottom: 4 }}>{title}</div>
+          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color, marginBottom: 10 }}>desde</div>
+          <div style={{ fontFamily: MONO, fontSize: 22, fontWeight: 700, color: 'rgba(255,255,255,0.55)' }}>${fmt(price)}</div>
         </div>
         <div style={{ width: 24, height: 24, borderRadius: '50%', border: `2px solid ${selected ? color : 'rgba(255,255,255,0.25)'}`, background: selected ? color : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 8, transition: 'all 0.2s' }}>
           {selected && <span style={{ color: BG, fontSize: 13, fontWeight: 700 }}>✓</span>}
