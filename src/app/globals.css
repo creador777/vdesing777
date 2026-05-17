@@ -30,6 +30,23 @@ canvas {
   touch-action: none;
 }
 
+/* ─── mobile overrides ───────────────────────────────────────────────────── */
+@media (max-width: 639px) {
+  /* Nav: reduce side padding so it fits on 375px, hide subtitle */
+  #main-nav { padding-left: 16px !important; padding-right: 16px !important; }
+  #nav-subtitle { display: none !important; }
+
+  /* Urgency bar: hide label + countdown, show only offer + CTA */
+  #urgency-label { display: none !important; }
+  #urgency-countdown { display: none !important; }
+
+  /* Badge: tighten letter-spacing so text fits on 1–2 lines */
+  #hero-badge { letter-spacing: 0.1em !important; font-size: 9px !important; }
+
+  /* Avatar: shorter on phone so hero doesn't feel endless */
+  #avatar-scene { height: 300px !important; width: 90% !important; max-width: 320px !important; }
+}
+
 /* Hide scrollbar but keep functionality */
 html {
   scrollbar-width: none;

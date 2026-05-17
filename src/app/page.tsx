@@ -142,7 +142,7 @@ function RoadCanvas() {
 
 function AvatarWalkScene() {
   return (
-    <div style={{
+    <div id="avatar-scene" style={{
       width: 'clamp(280px, 50vw, 620px)',
       height: 'clamp(360px, 62vw, 740px)',
       flexShrink: 0,
@@ -595,13 +595,13 @@ function UrgencyBar({ t }: { t: TType }) {
       <div style={{ position: 'absolute', bottom: 0, left: 0, width: `${pct}%`, height: 2, background: `linear-gradient(90deg, ${G}, #A855F7)`, boxShadow: `0 0 8px ${G}`, transition: 'width 1s linear' }} />
 
       <div style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 28, flexWrap: 'wrap', padding: '0 20px' }}>
-        <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
+        <div id="urgency-label" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
           {t.urgencyLabel}
         </div>
-        <div style={{ fontFamily: SERIF, fontSize: 18, color: G, textShadow: `0 0 18px ${G}88`, fontStyle: 'italic' }}>
+        <div id="urgency-offer" style={{ fontFamily: SERIF, fontSize: 18, color: G, textShadow: `0 0 18px ${G}88`, fontStyle: 'italic' }}>
           {t.urgencyOffer}
         </div>
-        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+        <div id="urgency-countdown" style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
           {[{ v: pad(d), l: t.urgencyDays }, { v: pad(h), l: t.urgencyHrs }, { v: pad(m), l: t.urgencyMin }, { v: pad(s), l: t.urgencySec }].map(({ v, l }) => (
             <div key={l} style={{ textAlign: 'center' }}>
               <div style={{ fontFamily: MONO, fontSize: 16, fontWeight: 700, color: '#fff', lineHeight: 1, letterSpacing: '0.05em', textShadow: `0 0 10px rgba(255,255,255,0.4)` }}>{v}</div>
@@ -802,9 +802,9 @@ export default function Servicios3D() {
       <PageLoader />
 
       {/* Nav */}
-      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 36px', background: `${BG}dd`, backdropFilter: 'blur(14px)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-        <Link href="/" style={{ fontFamily: MONO, fontSize: 13, letterSpacing: '0.04em', color: '#e6e6ee', textDecoration: 'none' }}>
-          VDesing<span style={{ color: G }}> — {lang === 'es' ? 'Webs 3D PR' : '3D Webs PR'}</span>
+      <nav id="main-nav" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 36px', background: `${BG}dd`, backdropFilter: 'blur(14px)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        <Link href="/" style={{ fontFamily: MONO, fontSize: 13, letterSpacing: '0.04em', color: '#e6e6ee', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+          VDesing<span id="nav-subtitle" style={{ color: G }}> — {lang === 'es' ? 'Webs 3D PR' : '3D Webs PR'}</span>
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ display: 'flex', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 4, overflow: 'hidden', fontFamily: MONO, fontSize: 11 }}>
@@ -828,7 +828,7 @@ export default function Servicios3D() {
         <div style={{ position: 'absolute', inset: 0, backgroundImage: `linear-gradient(rgba(57,255,139,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,139,0.04) 1px, transparent 1px)`, backgroundSize: '48px 48px', pointerEvents: 'none' }} />
 
         <div style={{ flex: '1 1 300px', minWidth: 0, zIndex: 1 }}>
-          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: G, marginBottom: 20, whiteSpace: 'pre-line' }}>{t.badge}</div>
+          <div id="hero-badge" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: G, marginBottom: 20, whiteSpace: 'pre-line' }}>{t.badge}</div>
           <h1 style={{ fontFamily: SERIF, fontSize: 'clamp(2.2rem, 5vw, 4.2rem)', fontWeight: 400, lineHeight: 1.1, marginBottom: 24, maxWidth: 560 }}>
             {t.h1a} <span style={{ color: G, fontStyle: 'italic' }}>{t.h1b}</span> {t.h1c}
           </h1>
