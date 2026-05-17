@@ -3,6 +3,17 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
+// Force full reload when browser restores this page from bfcache.
+// bfcache freezes the JS heap: RAF loops die, React effects don't re-run,
+// canvas and model-viewer end up in broken state. Reload is the only safe fix.
+if (typeof window !== 'undefined') {
+  window.addEventListener('pageshow', (e: PageTransitionEvent) => {
+    if (e.persisted) {
+      window.location.reload();
+    }
+  });
+}
+
 const G = '#39FF8B';
 const P = '#A855F7';
 const BG = '#08080d';
@@ -19,11 +30,7 @@ function useIsMobile() {
   useEffect(() => {
     const check = () => setM(window.innerWidth < 640);
     window.addEventListener('resize', check);
-    window.addEventListener('pageshow', check);
-    return () => {
-      window.removeEventListener('resize', check);
-      window.removeEventListener('pageshow', check);
-    };
+    return () => window.removeEventListener('resize', check);
   }, []);
   return m;
 }
