@@ -10,7 +10,7 @@ const MONO = "'JetBrains Mono', ui-monospace, monospace";
 const SERIF = "'Fraunces', Georgia, serif";
 const SANS = "'Inter', system-ui, sans-serif";
 
-const DEADLINE = new Date('2026-06-30T23:59:59');
+const DEADLINE = new Date('2026-05-30T23:59:59');
 
 function useCountdown() {
   const [left, setLeft] = useState({ d: 0, h: 0, m: 0, s: 0 });
