@@ -143,8 +143,8 @@ function RoadCanvas() {
 function AvatarWalkScene() {
   return (
     <div style={{
-      width: 'clamp(340px, 50vw, 620px)',
-      height: 'clamp(460px, 62vw, 740px)',
+      width: 'clamp(280px, 50vw, 620px)',
+      height: 'clamp(360px, 62vw, 740px)',
       flexShrink: 0,
       position: 'relative',
       overflow: 'hidden',
@@ -822,7 +822,7 @@ export default function Servicios3D() {
       <UrgencyBar t={t} />
 
       {/* Hero */}
-      <section style={{ minHeight: '92vh', display: 'flex', alignItems: 'center', padding: '140px 48px 80px', position: 'relative', overflow: 'hidden', maxWidth: 1200, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
+      <section style={{ minHeight: '92vh', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '32px 0', padding: '140px 24px 80px', position: 'relative', overflow: 'hidden', maxWidth: 1200, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: `linear-gradient(rgba(57,255,139,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,139,0.04) 1px, transparent 1px)`, backgroundSize: '48px 48px', pointerEvents: 'none' }} />
 
         <div style={{ flex: 1, minWidth: 0, zIndex: 1 }}>
