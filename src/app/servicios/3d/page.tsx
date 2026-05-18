@@ -745,6 +745,20 @@ export default function Servicios3D() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
+
+  // Bfcache killer: if Safari serves this page from back/forward cache,
+  // force a real network fetch so the user sees the current deployed version.
+  useEffect(() => {
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        window.location.replace(window.location.pathname + '?r=' + Date.now());
+      }
+    };
+    window.addEventListener('pageshow', handlePageShow);
+    // Opt out of bfcache entirely for future navigations
+    window.addEventListener('unload', () => {});
+    return () => window.removeEventListener('pageshow', handlePageShow);
+  }, []);
   const [base, setBase] = useState<'basic' | 'pro' | null>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
