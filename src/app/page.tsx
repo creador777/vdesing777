@@ -4,37 +4,22 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 if (typeof window !== 'undefined') {
-  // Kill any stale service workers (e.g. left over from Firebase Hosting).
-  // A stale SW intercepts requests and serves old cached content, bypassing
-  // any Cache-Control headers and making reloads appear to do nothing.
+  // Opt out of bfcache entirely. A non-empty unload listener signals to all
+  // browsers (Safari, Chrome, Firefox) that this page cannot be stored in the
+  // back/forward cache. Without bfcache, navigating back always triggers a
+  // fresh HTTP request, so model-viewer, canvas RAF loops, and React state
+  // are always initialized from scratch — never restored from a frozen heap.
+  window.addEventListener('unload', () => {});
+
+  // Kill any stale service workers left over from previous hosting providers
+  // (e.g. Firebase Hosting). A live SW intercepts requests and serves old
+  // cached HTML/JS even when the server sends Cache-Control: no-store.
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(regs => {
       regs.forEach(r => r.unregister());
     });
     caches.keys().then(names => names.forEach(n => caches.delete(n)));
   }
-
-  // Clean up _r param added by the bfcache redirect below.
-  const u = new URL(window.location.href);
-  if (u.searchParams.has('_r')) {
-    u.searchParams.delete('_r');
-    window.history.replaceState(null, '', u.toString());
-  }
-
-  // iOS Safari bfcache fix.
-  // reload() is broken in Safari: it can be served from Safari's own
-  // in-memory cache even when Cache-Control: no-store is set, which means
-  // the frozen/broken state is restored again. Instead, navigate to a
-  // URL with a unique timestamp — Safari has never cached that URL so it
-  // MUST make a real HTTP request, loading a fresh copy of the page.
-  window.addEventListener('pageshow', (e: PageTransitionEvent) => {
-    if (e.persisted) {
-      window.scrollTo(0, 0);
-      const fresh = new URL(window.location.href);
-      fresh.searchParams.set('_r', Date.now().toString());
-      window.location.replace(fresh.toString());
-    }
-  });
 }
 
 const G = '#39FF8B';
