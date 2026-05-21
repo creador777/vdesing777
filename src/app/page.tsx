@@ -187,7 +187,7 @@ function AvatarWalkScene() {
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, #08080d 0%, transparent 20%, transparent 80%, #08080d 100%)', pointerEvents: 'none', zIndex: 1 }} />
       <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 55% 40% at 50% 60%, ${G}0d 0%, transparent 70%)`, pointerEvents: 'none', zIndex: 1 }} />
       <ModelViewer
-        src="/models/chibi-animated.glb"
+        src="/models/chibi-animated-draco.glb"
         autoplay
         animation-name="Idle_9"
         camera-orbit="0deg 88deg 5m"
@@ -346,6 +346,7 @@ const T = {
       { name: 'IglesIA',        cat: 'Iglesia · App · Comunidad',            desc: 'Plataforma digital para comunidad de fe — transmisiones, anuncios, directorio y app móvil integrada.' },
       { name: 'Ymusic',         cat: 'Música · Streaming · Artista',         desc: 'Sitio web para artista musical con integración de plataformas de streaming, galería y agenda de eventos.' },
       { name: 'ARCScribe',      cat: 'Herramienta · Símbolos · Tipografía',  desc: 'Acceso a símbolos Unicode oscuros y premium. Glifos aesthetic para bio y redes sociales, con copiado instantáneo.' },
+      { name: 'KARE Boutique',  cat: 'Boutique de Ropa · Tienda · WhatsApp', desc: 'Tienda de moda premium con diseño 3D, catálogo bilingüe (ES/EN) y pedidos directos por WhatsApp. Envíos a US, PR y Colombia.' },
     ],
     // footer services list
     footerServices: ['Página web', 'Diseño de logo', 'Tienda online', 'WhatsApp Bot', 'Escena 3D'],
@@ -436,6 +437,7 @@ const T = {
       { name: 'IglesIA',        cat: 'Church · App · Community',             desc: 'Digital platform for a faith community — live streams, announcements, directory, and integrated mobile app.' },
       { name: 'Ymusic',         cat: 'Music · Streaming · Artist',           desc: 'Website for a music artist with streaming platform integration, gallery, and event schedule.' },
       { name: 'ARCScribe',      cat: 'Tool · Symbols · Typography',          desc: 'Access to obscure and premium Unicode symbols. Aesthetic glyphs for bios and social media, with instant copy.' },
+      { name: 'KARE Boutique',  cat: 'Fashion Boutique · Store · WhatsApp',  desc: 'Premium fashion store with 3D design, a bilingual (ES/EN) catalog, and direct WhatsApp ordering. Ships to US, PR and Colombia.' },
     ],
     // footer services list
     footerServices: ['Website', 'Logo design', 'Online store', 'WhatsApp Bot', '3D Scene'],
@@ -1062,13 +1064,14 @@ export default function Servicios3D() {
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
             {([
-              { ...t.projects[0], color: G, url: 'https://corta-pelo.vercel.app' },
-              { ...t.projects[1], color: P, url: null },
-              { ...t.projects[2], color: G, url: 'https://samuraytattoo.pages.dev' },
-              { ...t.projects[3], color: P, url: 'https://reyesg.vercel.app/' },
-              { ...t.projects[4], color: G, url: 'https://www.iglesia.living/' },
-              { ...t.projects[5], color: P, url: 'https://ymusic.nucleo-evo-cuantic7.workers.dev/' },
-              { ...t.projects[6], color: G, url: 'https://arcs.nucleo-evo-cuantic7.workers.dev/' },
+              { ...t.projects[7], color: G, url: 'https://kare.boutique' },
+              { ...t.projects[0], color: P, url: 'https://corta-pelo.vercel.app' },
+              { ...t.projects[1], color: G, url: null },
+              { ...t.projects[2], color: P, url: 'https://samuraytattoo.pages.dev' },
+              { ...t.projects[3], color: G, url: 'https://reyesg.vercel.app/' },
+              { ...t.projects[4], color: P, url: 'https://www.iglesia.living/' },
+              { ...t.projects[5], color: G, url: 'https://ymusic.nucleo-evo-cuantic7.workers.dev/' },
+              { ...t.projects[6], color: P, url: 'https://arcs.nucleo-evo-cuantic7.workers.dev/' },
             ] as Array<{ name: string; cat: string; desc: string; color: string; url: string | null }>).map((p) => (
               <div key={p.name} style={{ border: `1px solid rgba(255,255,255,0.08)`, borderRadius: 10, padding: '28px 24px', background: 'rgba(255,255,255,0.02)', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: p.color, opacity: 0.6 }} />
